@@ -113,7 +113,7 @@ export function renderHighlights(): string {
   <section id="work" class="reveal mx-auto max-w-6xl px-6 py-20">
     <h2 class="font-display text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-accent)]">Selected Work</h2>
     <p class="mt-4 max-w-2xl text-white/60">
-      A few systems I've designed and shipped to production at Luxury Presence. Written in general terms — the details
+      A few systems I've designed and shipped to production. Written in general terms — the details
       are proprietary, but the engineering problems are real.
     </p>
     <div class="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">

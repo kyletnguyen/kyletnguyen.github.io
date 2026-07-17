@@ -14,24 +14,23 @@ export const navLinks: NavLink[] = [
 export interface SocialLink {
   label: string;
   href: string;
-  icon: 'github' | 'linkedin' | 'resume';
+  icon: 'github' | 'linkedin';
 }
 
 export const socialLinks: SocialLink[] = [
   { label: 'GitHub', href: 'https://github.com/kyletnguyen', icon: 'github' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ktnguyen43', icon: 'linkedin' },
-  { label: 'Resume', href: '/resume.pdf', icon: 'resume' },
 ];
 
 export const hero = {
   name: 'Kyle Thien Nguyen',
-  roles: ['Software Engineer.', 'GraphQL, TypeScript & AI-adjacent systems.', 'Building at Luxury Presence.'],
+  roles: ['Software Engineer.', 'GraphQL, TypeScript & AI-adjacent systems.', 'Building production SaaS.'],
   location: 'Southern California',
 };
 
 export const about = {
   paragraphs: [
-    "I'm a software engineer at Luxury Presence, a real estate technology company, where I work in a TypeScript monorepo that runs the CRM and third-party integration platform thousands of real estate businesses rely on day to day.",
+    "I'm a software engineer at a real estate technology company, where I work in a TypeScript monorepo that runs the CRM and third-party integration platform thousands of businesses rely on day to day.",
     "Most of my time lives in event-driven, multi-tenant backend systems: I own a production contact-enrichment pipeline built on SNS/SQS that batches, retries, and reconciles data against a third-party identity-resolution API at scale; I maintain GraphQL Federation surface area on our core CRM subgraph; and I've built real-time and backfill data-sync pipelines against external partner APIs, complete with feature-flagged rollouts and queue-sharding for safe bulk operations.",
     "I also spend time on the mobile side of the product in React Native, and on the platform side — CI/CD, schema governance across a federated graph, and the operational tooling that keeps a fast-moving monorepo maintainable as it grows.",
     "Outside of work you'll find me deep in a video game, watching sports, or tinkering with whatever new gadget or piece of tech just came out.",
