@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-bg: #0a0a0f;
+  --color-bg-soft: #101018;
+  --color-surface: #15151f;
+  --color-surface-2: #1b1b28;
+  --color-border: #26263a;
+  --color-text: #e7e7ef;
+  --color-text-muted: #9a9ab0;
+  --color-accent: #8b7cf6;
+  --color-accent-soft: #8b7cf633;
+  --color-accent-2: #34d399;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #0a0a0f;
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* Scroll-reveal: main.ts toggles .is-visible via IntersectionObserver */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.bg-grid {
+  background-image:
+    radial-gradient(circle at 15% 10%, var(--color-accent-soft), transparent 40%),
+    radial-gradient(circle at 85% 0%, #34d39922, transparent 35%);
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, #ffffff 20%, var(--color-accent) 60%, var(--color-accent-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tag {
+  @apply inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium;
+  border-color: var(--color-border);
+  background-color: var(--color-surface-2);
+  color: var(--color-text-muted);
+}
+
+.card {
+  @apply rounded-2xl border p-6 sm:p-8;
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.nav-link {
+  @apply text-sm font-medium tracking-wide text-white/70 transition hover:text-white;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-black transition hover:opacity-90 active:scale-[0.98];
+  background-color: var(--color-accent);
+}
+
+.input-field {
+  @apply w-full rounded-xl border bg-transparent px-4 py-3 text-sm text-white placeholder-white/50 outline-none transition;
+  border-color: rgb(255 255 255 / 0.15);
+  background-color: var(--color-surface-2);
+}
+
+.input-field:focus {
+  border-color: var(--color-accent);
+}
+
+/* Honeypot field — hidden from sighted users and screen readers, left open for bots. */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
