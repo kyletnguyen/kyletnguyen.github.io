@@ -113,8 +113,8 @@ export function renderHighlights(): string {
   <section id="work" class="reveal py-20 sm:py-28">
     <div class="mx-auto max-w-6xl px-6 sm:px-8">
       <p class="eyebrow">Selected Work</p>
-      <h2 class="section-title mt-4">Things I've built.</h2>
-      <p class="lead mt-4">A few systems I've shipped to production. Kept general on purpose, but the engineering is real.</p>
+      <h2 class="section-title mt-4">Production systems.</h2>
+      <p class="lead mt-4">Selected systems built and shipped to production. Kept general on purpose, but the scope and engineering behind them are real.</p>
       <div class="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2">
         ${highlights
           .map(

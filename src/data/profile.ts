@@ -51,42 +51,42 @@ export const highlights: Highlight[] = [
   {
     title: 'Real estate app',
     description:
-      "I was one of the first engineers on the company's first mobile app, and helped take it from an empty repo to something people use every day. Early on I stood up the CI, the test setup, and the iOS and Android release pipeline. From there I built a big part of the core product: property search with maps and filters, saved listings, contact management, and push notifications.",
+      "Helped launch the company's first mobile app as a founding engineer and its second-most-active contributor, taking it from an empty repo to a product used daily. Established the CI, testing, and iOS and Android release pipelines, then delivered core product surfaces spanning property search with maps and filters, saved listings, contact management, and push notifications.",
     tags: ['React Native', 'iOS & Android', 'Fastlane'],
     accent: '#38bdf8',
   },
   {
     title: 'Algorithmic trading platform',
     description:
-      'A C# platform that runs automated options, futures, and equities strategies and trades faster than a person could. I connected it to a market-data feed streaming quotes on 10,000+ stocks and wrote the buy and sell logic that reacts to price, volume, and timing.',
+      'Built a C# platform that automates options, futures, and equities strategies and executes far faster than a human trader. Integrated a market-data feed streaming live quotes across 10,000+ securities and implemented the buy and sell signal logic driven by price, volume, and timing.',
     tags: ['C#', '.NET', 'Real-Time Market Data'],
     accent: '#34d399',
   },
   {
     title: 'Data enrichment pipeline',
     description:
-      'A pipeline that enriches records as they come in. It batches work through queues, backs off when an outside API hits its rate limit, and recovers cleanly when a call fails so nothing gets dropped. I added a job that automatically catches records up when they fall behind.',
+      'Designed an event-driven enrichment pipeline that processes records at scale while cutting third-party API request volume roughly 10x through batching. Added rate-limit backoff, dead-letter recovery so failed calls are never dropped, and a reconciliation job that automatically backfills records that fall behind.',
     tags: ['Event-Driven', 'AWS SNS/SQS', 'Reliability'],
     accent: '#8b7cf6',
   },
   {
     title: 'Federated GraphQL APIs',
     description:
-      'I own part of a federated GraphQL schema that a lot of internal services and integrations depend on. Everything ships through versioned, reviewed releases so a change never breaks the services downstream.',
+      'Own and evolve part of a federated GraphQL schema that dozens of internal services and integrations depend on. Ship every change through versioned, reviewed releases with automated schema checks so downstream consumers never break.',
     tags: ['GraphQL', 'Apollo Federation', 'NestJS'],
     accent: '#f472b6',
   },
   {
     title: 'High-throughput data sync',
     description:
-      'Pipelines that sync data from outside APIs in real time, plus a safe bulk mode that can move millions of records without overwhelming a rate-limited service. I rolled the whole thing out behind feature flags.',
+      'Built real-time data-sync pipelines plus a throttled bulk mode capable of moving millions of records without overwhelming a rate-limited upstream API. Rolled the entire migration out safely behind feature flags.',
     tags: ['AWS Lambda', 'Feature Flags', 'Scale'],
     accent: '#fbbf24',
   },
   {
     title: 'Third-party integrations',
     description:
-      'Systems that connect to outside CRM vendors and keep records matched between their data and ours, with automatic matching and a manual override for the messy cases.',
+      'Built integration systems that sync data with external CRM vendors and keep records reconciled across both sides, using confidence-scored automatic matching with a manual override for ambiguous cases.',
     tags: ['Distributed Systems', 'Multi-Tenant SaaS'],
     accent: '#22d3ee',
   },
