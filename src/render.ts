@@ -5,7 +5,6 @@ import {
   hero,
   about,
   highlights,
-  trading,
   techStack,
   ai,
   personal,
@@ -58,7 +57,7 @@ export function renderHero(stats: GithubStats): string {
     ['Commits (1y)', stats.contributionsLastYear.toLocaleString()],
   ];
   return `
-  <section id="top" class="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
+  <section id="top" class="relative overflow-hidden pt-32 pb-6 sm:pt-40 sm:pb-10">
     <div class="pointer-events-none absolute -top-24 right-[-10%] h-[420px] w-[420px] rounded-full bg-accent/20 blur-3xl"></div>
     <div class="relative mx-auto max-w-6xl px-6 sm:px-8">
       <div class="max-w-3xl">
@@ -74,7 +73,7 @@ export function renderHero(stats: GithubStats): string {
           <div class="ml-1 flex gap-2">${socialLinks.map(socialIconLink).join('')}</div>
         </div>
 
-        <dl class="reveal mt-14 flex max-w-md divide-x divide-white/10 border-t border-line pt-6">
+        <dl class="reveal mt-10 flex max-w-md divide-x divide-white/10 border-t border-line pt-6">
           ${statItems
             .map(
               ([label, value]) => `
@@ -92,24 +91,26 @@ export function renderHero(stats: GithubStats): string {
 
 export function renderAbout(): string {
   return `
-  <section id="about" class="reveal py-20 sm:py-32">
-    <div class="mx-auto max-w-3xl px-6 sm:px-8">
-      <p class="eyebrow">About</p>
-      <h2 class="section-title mt-4">Full-stack, end to end.</h2>
-      <div class="mt-6 space-y-5 text-base leading-relaxed text-muted sm:text-lg">
-        ${about.paragraphs.map((p) => `<p>${p}</p>`).join('')}
+  <section id="about" class="reveal py-20 sm:py-28">
+    <div class="mx-auto max-w-6xl px-6 sm:px-8">
+      <div class="max-w-3xl">
+        <p class="eyebrow">About</p>
+        <h2 class="section-title mt-4">Full-stack, end to end.</h2>
+        <div class="mt-6 space-y-5 text-base leading-relaxed text-muted sm:text-lg">
+          ${about.paragraphs.map((p) => `<p>${p}</p>`).join('')}
+        </div>
+        <blockquote class="mt-10 border-l-2 border-[color:var(--color-accent)] pl-6 italic text-muted">
+          "${about.quote.text}"
+          <footer class="mt-2 text-sm not-italic text-muted/70">— ${about.quote.author}</footer>
+        </blockquote>
       </div>
-      <blockquote class="mt-10 border-l-2 border-[color:var(--color-accent)] pl-6 italic text-muted">
-        "${about.quote.text}"
-        <footer class="mt-2 text-sm not-italic text-muted/70">— ${about.quote.author}</footer>
-      </blockquote>
     </div>
   </section>`;
 }
 
 export function renderHighlights(): string {
   return `
-  <section id="work" class="reveal py-20 sm:py-32">
+  <section id="work" class="reveal py-20 sm:py-28">
     <div class="mx-auto max-w-6xl px-6 sm:px-8">
       <p class="eyebrow">Selected Work</p>
       <h2 class="section-title mt-4">Things I've built.</h2>
@@ -118,8 +119,9 @@ export function renderHighlights(): string {
         ${highlights
           .map(
             (h) => `
-          <article class="card">
-            <h3 class="font-display text-lg font-semibold text-fg">${h.title}</h3>
+          <article class="card" style="--card-accent:${h.accent}">
+            <span class="block h-1 w-10 rounded-full" style="background:${h.accent}"></span>
+            <h3 class="mt-4 font-display text-lg font-semibold text-fg">${h.title}</h3>
             <p class="mt-3 leading-relaxed text-muted">${h.description}</p>
             <div class="mt-5 flex flex-wrap gap-2">
               ${h.tags.map((t) => `<span class="chip">${t}</span>`).join('')}
@@ -132,58 +134,19 @@ export function renderHighlights(): string {
   </section>`;
 }
 
-export function renderTrading(): string {
-  const curve = 'M0,102 L30,96 L60,100 L90,84 L120,90 L150,70 L180,78 L210,58 L240,66 L270,44 L300,52 L330,30 L360,38 L400,16';
-  const metrics: Array<[string, string]> = [
-    ['10,000+', 'Securities streamed'],
-    ['3', 'Asset classes traded'],
-    ['Sub-second', 'Signal to order'],
-  ];
-  return `
-  <section id="trading" class="reveal py-20 sm:py-32">
-    <div class="mx-auto max-w-6xl px-6 sm:px-8">
-      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent-2">Markets</p>
-      <h2 class="section-title mt-4">${trading.heading}</h2>
-      <div class="mt-6 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
-        <div class="space-y-5 text-base leading-relaxed text-muted sm:text-lg">
-          ${trading.paragraphs.map((p) => `<p>${p}</p>`).join('')}
-          <div class="flex flex-wrap gap-2 pt-2">
-            ${trading.items.map((t) => `<span class="chip">${t}</span>`).join('')}
-          </div>
-        </div>
-        <div class="rounded-2xl border border-line bg-white/[0.02] p-6 sm:p-8">
-          <svg viewBox="0 0 400 120" preserveAspectRatio="none" class="h-32 w-full" fill="none" aria-hidden="true">
-            <path d="${curve} L400,120 L0,120 Z" fill="#34d399" fill-opacity="0.10"/>
-            <path d="${curve}" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <dl class="mt-6 grid grid-cols-3 gap-4 border-t border-line pt-6">
-            ${metrics
-              .map(
-                ([value, label]) => `
-              <div>
-                <dd class="text-xl font-semibold tabular-nums text-fg">${value}</dd>
-                <dt class="mt-1 text-xs text-muted">${label}</dt>
-              </div>`
-              )
-              .join('')}
-          </dl>
-        </div>
-      </div>
-    </div>
-  </section>`;
-}
-
 export function renderAi(): string {
   return `
-  <section id="ai" class="reveal py-20 sm:py-32">
-    <div class="mx-auto max-w-3xl px-6 sm:px-8">
-      <p class="eyebrow flex items-center gap-2"><span class="h-4 w-4 text-accent">${icons.spark}</span> ${ai.heading}</p>
-      <h2 class="section-title mt-4">${ai.intro}</h2>
-      <div class="mt-6 space-y-5 leading-relaxed text-muted">
-        ${ai.paragraphs.map((p) => `<p>${p}</p>`).join('')}
-      </div>
-      <div class="mt-8 flex flex-wrap gap-2">
-        ${ai.items.map((item) => `<span class="chip">${item}</span>`).join('')}
+  <section id="ai" class="reveal py-20 sm:py-28">
+    <div class="mx-auto max-w-6xl px-6 sm:px-8">
+      <div class="max-w-3xl">
+        <p class="eyebrow flex items-center gap-2"><span class="h-4 w-4 text-accent">${icons.spark}</span> ${ai.heading}</p>
+        <h2 class="section-title mt-4">${ai.intro}</h2>
+        <div class="mt-6 space-y-5 leading-relaxed text-muted">
+          ${ai.paragraphs.map((p) => `<p>${p}</p>`).join('')}
+        </div>
+        <div class="mt-8 flex flex-wrap gap-2">
+          ${ai.items.map((item) => `<span class="chip">${item}</span>`).join('')}
+        </div>
       </div>
     </div>
   </section>`;
@@ -191,7 +154,7 @@ export function renderAi(): string {
 
 export function renderTechStack(): string {
   return `
-  <section id="stack" class="reveal py-20 sm:py-32">
+  <section id="stack" class="reveal py-20 sm:py-28">
     <div class="mx-auto max-w-6xl px-6 sm:px-8">
       <p class="eyebrow">Stack</p>
       <h2 class="section-title mt-4">What I build with.</h2>
@@ -214,7 +177,7 @@ export function renderTechStack(): string {
 
 export function renderPersonal(): string {
   return `
-  <section id="life" class="reveal py-20 sm:py-32">
+  <section id="life" class="reveal py-20 sm:py-28">
     <div class="mx-auto max-w-6xl px-6 sm:px-8">
       <p class="eyebrow">${personal.heading}</p>
       <h2 class="section-title mt-4">Life away from the keyboard.</h2>
@@ -239,7 +202,7 @@ export function renderPersonal(): string {
 
 export function renderContact(): string {
   return `
-  <section id="contact" class="reveal py-20 sm:py-32">
+  <section id="contact" class="reveal py-20 sm:py-28">
     <div class="mx-auto max-w-xl px-6 sm:px-8">
       <p class="eyebrow text-center">Contact</p>
       <h2 class="section-title mt-4 text-center">${contact.heading}</h2>

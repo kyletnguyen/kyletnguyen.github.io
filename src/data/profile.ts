@@ -6,7 +6,6 @@ export interface NavLink {
 export const navLinks: NavLink[] = [
   { label: 'About', href: '#about' },
   { label: 'Work', href: '#work' },
-  { label: 'Trading', href: '#trading' },
   { label: 'AI', href: '#ai' },
   { label: 'Stack', href: '#stack' },
   { label: 'Contact', href: '#contact' },
@@ -45,49 +44,53 @@ export interface Highlight {
   title: string;
   description: string;
   tags: string[];
+  accent: string;
 }
 
 export const highlights: Highlight[] = [
   {
-    title: 'Real estate mobile app (React Native)',
+    title: 'Real estate app',
     description:
-      "Helped build the company's first mobile app from close to day one. It's a React Native app for browsing property listings, searching with maps and filters, saving favorites, and letting agents work with their contacts, along the lines of Zillow or Redfin but our own take. I set up a lot of the foundation early on (CI, testing, and the iOS and Android release pipeline) and shipped core features across search, listings, saved properties, contacts, and push notifications.",
-    tags: ['React Native', 'iOS & Android', 'Fastlane CI/CD'],
+      "I was one of the first engineers on the company's first mobile app, and helped take it from an empty repo to something people use every day. Early on I stood up the CI, the test setup, and the iOS and Android release pipeline. From there I built a big part of the core product: property search with maps and filters, saved listings, contact management, and push notifications.",
+    tags: ['React Native', 'iOS & Android', 'Fastlane'],
+    accent: '#38bdf8',
+  },
+  {
+    title: 'Algorithmic trading platform',
+    description:
+      'A C# platform that runs automated options, futures, and equities strategies and trades faster than a person could. I connected it to a market-data feed streaming quotes on 10,000+ stocks and wrote the buy and sell logic that reacts to price, volume, and timing.',
+    tags: ['C#', '.NET', 'Real-Time Market Data'],
+    accent: '#34d399',
   },
   {
     title: 'Data enrichment pipeline',
     description:
-      'Built a pipeline that enriches records as they come in. It batches work through queues, backs off when an outside API hits its rate limit, and recovers cleanly when calls fail so nothing gets dropped. I also added a job that automatically catches records up when they fall behind.',
+      'A pipeline that enriches records as they come in. It batches work through queues, backs off when an outside API hits its rate limit, and recovers cleanly when a call fails so nothing gets dropped. I added a job that automatically catches records up when they fall behind.',
     tags: ['Event-Driven', 'AWS SNS/SQS', 'Reliability'],
+    accent: '#8b7cf6',
   },
   {
     title: 'Federated GraphQL APIs',
     description:
-      'Own part of a federated GraphQL schema that a lot of internal services and integrations depend on. Everything ships through versioned, reviewed releases so changes never break the services downstream.',
+      'I own part of a federated GraphQL schema that a lot of internal services and integrations depend on. Everything ships through versioned, reviewed releases so a change never breaks the services downstream.',
     tags: ['GraphQL', 'Apollo Federation', 'NestJS'],
+    accent: '#f472b6',
   },
   {
     title: 'High-throughput data sync',
     description:
-      'Built pipelines that sync data from outside APIs in real time, plus a safe bulk mode that can move millions of records without overwhelming a rate-limited service. Rolled the whole thing out behind feature flags.',
+      'Pipelines that sync data from outside APIs in real time, plus a safe bulk mode that can move millions of records without overwhelming a rate-limited service. I rolled the whole thing out behind feature flags.',
     tags: ['AWS Lambda', 'Feature Flags', 'Scale'],
+    accent: '#fbbf24',
   },
   {
     title: 'Third-party integrations',
     description:
-      'Built systems that connect to outside CRM vendors and keep records matched between their data and ours, with automatic matching and a manual override for the messy cases.',
+      'Systems that connect to outside CRM vendors and keep records matched between their data and ours, with automatic matching and a manual override for the messy cases.',
     tags: ['Distributed Systems', 'Multi-Tenant SaaS'],
+    accent: '#22d3ee',
   },
 ];
-
-export const trading = {
-  heading: 'Markets & Algorithmic Trading',
-  paragraphs: [
-    "For the past few years I've built software for high-frequency trading. It's a C# platform that runs automated strategies across options, futures, and equities, and it trades far faster than a person ever could.",
-    "I hooked it up to a market-data API that streams live quotes on more than 10,000 stocks, then wrote the logic that decides when to buy and sell based on things like price, volume, and timing. Working in markets got me used to writing code that has to be fast, correct, and calm under pressure when real money is on the line.",
-  ],
-  items: ['C#', '.NET', 'REST APIs', 'OAuth', 'Real-Time Market Data', 'Automated Strategies'],
-};
 
 export interface TechItem {
   name: string;
@@ -129,9 +132,9 @@ export const techStack: TechCategory[] = [
     items: [
       { name: 'React', slug: 'react' },
       { name: 'React Native', slug: 'react' },
-      { name: 'Redux', slug: 'redux' },
-      { name: 'HTML5', slug: 'html5' },
-      { name: 'CSS3', slug: 'css' },
+      { name: 'Apollo Client', slug: 'apollographql' },
+      { name: 'Reanimated' },
+      { name: 'Zustand' },
       { name: 'Tailwind CSS', slug: 'tailwindcss' },
     ],
   },
@@ -164,7 +167,9 @@ export const techStack: TechCategory[] = [
       { name: 'pnpm', slug: 'pnpm' },
       { name: 'Turborepo', slug: 'turborepo' },
       { name: 'GitHub Actions', slug: 'githubactions' },
+      { name: 'Fastlane', slug: 'fastlane' },
       { name: 'Jest', slug: 'jest' },
+      { name: 'Appium', slug: 'appium' },
       { name: 'Datadog', slug: 'datadog' },
       { name: 'LaunchDarkly' },
     ],

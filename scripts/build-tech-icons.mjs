@@ -13,7 +13,8 @@ const OUT_PATH = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'dat
 const SLUGS = [
   'typescript', 'javascript', 'csharp', 'sharp', 'dotnet', 'python', 'openjdk', 'c', 'cplusplus',
   'nodedotjs', 'nestjs', 'graphql', 'apollographql',
-  'react', 'redux', 'html5', 'css', 'tailwindcss',
+  'react', 'reactnative', 'expo', 'redux', 'zustand', 'reactnavigation', 'html5', 'css', 'tailwindcss',
+  'fastlane', 'appium', 'firebase',
   'postgresql', 'microsoftsqlserver', 'redis', 'apachekafka', 'flyway',
   'amazonwebservices', 'amazonaws', 'awslambda', 'amazons3', 'amazonsqs', 'amazonsimplenotificationservice',
   'docker', 'kubernetes', 'argo', 'serverless',

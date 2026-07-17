@@ -119,7 +119,7 @@ h3,
 }
 
 .card:hover {
-  border-color: var(--color-line-strong);
+  border-color: var(--card-accent, var(--color-line-strong));
   background-color: rgb(255 255 255 / 0.04);
 }
 
