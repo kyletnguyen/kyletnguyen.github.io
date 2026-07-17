@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "packageManager": "pnpm@11.13.1",
   "scripts": {
     "dev": "node scripts/fetch-github-stats.mjs && vite",
     "stats": "node scripts/fetch-github-stats.mjs",
