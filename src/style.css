@@ -4,26 +4,26 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --color-bg: #0a0a0f;
-  --color-bg-soft: #101018;
-  --color-surface: #15151f;
-  --color-surface-2: #1b1b28;
-  --color-border: #26263a;
-  --color-text: #e7e7ef;
-  --color-text-muted: #9a9ab0;
+  --color-ink: #0a0a0f;
+  --color-surface: #101019;
+  --color-fg: #e7e7ef;
+  --color-muted: #9a9ab0;
+  --color-line: #ffffff1a;
+  --color-line-strong: #ffffff29;
   --color-accent: #8b7cf6;
-  --color-accent-soft: #8b7cf633;
   --color-accent-2: #34d399;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--color-ink);
+  color: var(--color-fg);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -35,20 +35,136 @@ h3,
 
 ::selection {
   background: var(--color-accent);
-  color: #0a0a0f;
+  color: var(--color-ink);
 }
 
-section[id] {
-  scroll-margin-top: 5rem;
+/* ---- Reusable pieces -------------------------------------------------- */
+
+.eyebrow {
+  @apply text-xs font-semibold uppercase tracking-[0.2em];
+  color: var(--color-accent);
 }
 
-/* Scroll-reveal: main.ts toggles .is-visible via IntersectionObserver */
+.section-title {
+  @apply text-[1.75rem] font-semibold leading-tight tracking-tight sm:text-4xl;
+  text-wrap: balance;
+  color: var(--color-fg);
+}
+
+.lead {
+  @apply text-base leading-relaxed sm:text-lg;
+  color: var(--color-muted);
+  max-width: 65ch;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold transition active:scale-[0.98];
+  background-color: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.btn-primary:hover {
+  background-color: #9c8ff8;
+  box-shadow: 0 0 24px -6px var(--color-accent);
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border px-5 py-2.5 text-sm font-medium transition active:scale-[0.98];
+  border-color: var(--color-line);
+  color: var(--color-fg);
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-line-strong);
+  background-color: rgb(255 255 255 / 0.04);
+}
+
+/* The core fix: any icon inside a button is clamped to 16px and never grows. */
+.btn-primary svg,
+.btn-ghost svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.chip {
+  @apply inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors;
+  border-color: var(--color-line);
+  background-color: rgb(255 255 255 / 0.02);
+  color: var(--color-muted);
+}
+
+.chip:hover {
+  border-color: var(--color-line-strong);
+  color: var(--color-fg);
+}
+
+/* Brand logo inside a chip: greyscale at rest, brand color on hover. */
+.chip svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: var(--color-muted);
+  transition: color 0.2s ease;
+}
+
+.chip:hover svg {
+  color: var(--brand, var(--color-fg));
+}
+
+.card {
+  @apply rounded-2xl border p-6 transition-colors sm:p-7;
+  border-color: var(--color-line);
+  background-color: rgb(255 255 255 / 0.02);
+}
+
+.card:hover {
+  border-color: var(--color-line-strong);
+  background-color: rgb(255 255 255 / 0.04);
+}
+
+.input-field {
+  @apply w-full rounded-xl border bg-transparent px-4 py-3 text-sm outline-none transition;
+  border-color: var(--color-line);
+  background-color: var(--color-surface);
+  color: var(--color-fg);
+}
+
+.input-field::placeholder {
+  color: var(--color-muted);
+}
+
+.input-field:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent) 35%, transparent);
+}
+
+.nav-link {
+  @apply text-sm transition-colors;
+  color: var(--color-muted);
+}
+
+.nav-link:hover {
+  color: var(--color-fg);
+}
+
+/* Honeypot: hidden from people, open to bots. */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ---- Quiet fade-up on scroll ----------------------------------------- */
+
 .reveal {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(12px);
   transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
 }
 
 .reveal.is-visible {
@@ -57,63 +173,12 @@ section[id] {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   .reveal {
     opacity: 1;
     transform: none;
     transition: none;
   }
-}
-
-.bg-grid {
-  background-image:
-    radial-gradient(circle at 15% 10%, var(--color-accent-soft), transparent 40%),
-    radial-gradient(circle at 85% 0%, #34d39922, transparent 35%);
-}
-
-.text-gradient {
-  background: linear-gradient(120deg, #ffffff 20%, var(--color-accent) 60%, var(--color-accent-2) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.tag {
-  @apply inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium;
-  border-color: var(--color-border);
-  background-color: var(--color-surface-2);
-  color: var(--color-text-muted);
-}
-
-.card {
-  @apply rounded-2xl border p-6 sm:p-8;
-  background-color: var(--color-surface);
-  border-color: var(--color-border);
-}
-
-.nav-link {
-  @apply text-sm font-medium tracking-wide text-white/70 transition hover:text-white;
-}
-
-.btn-primary {
-  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-black transition hover:opacity-90 active:scale-[0.98];
-  background-color: var(--color-accent);
-}
-
-.input-field {
-  @apply w-full rounded-xl border bg-transparent px-4 py-3 text-sm text-white placeholder-white/50 outline-none transition;
-  border-color: rgb(255 255 255 / 0.15);
-  background-color: var(--color-surface-2);
-}
-
-.input-field:focus {
-  border-color: var(--color-accent);
-}
-
-/* Honeypot field — hidden from sighted users and screen readers, left open for bots. */
-.hp-field {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
 }

@@ -2,7 +2,18 @@ import './style.css';
 import statsJson from './data/github-stats.generated.json';
 import type { GithubStats } from './data/github-stats';
 import { hero, contact } from './data/profile';
-import { renderNav, renderHero, renderAbout, renderTechStack, renderHighlights, renderAi, renderContact, renderFooter } from './render';
+import {
+  renderNav,
+  renderHero,
+  renderAbout,
+  renderHighlights,
+  renderTrading,
+  renderAi,
+  renderTechStack,
+  renderPersonal,
+  renderContact,
+  renderFooter,
+} from './render';
 
 const stats = statsJson as GithubStats;
 
@@ -13,15 +24,16 @@ app.innerHTML = [
   renderNav(),
   renderHero(stats),
   renderAbout(),
-  renderTechStack(),
   renderHighlights(),
+  renderTrading(),
   renderAi(),
+  renderTechStack(),
+  renderPersonal(),
   renderContact(),
   renderFooter(),
 ].join('');
 
 initMobileMenu();
-initNavShrink();
 initScrollReveal();
 initRoleRotator();
 initContactForm();
@@ -42,22 +54,6 @@ function initMobileMenu(): void {
   menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
 }
 
-function initNavShrink(): void {
-  const nav = document.querySelector<HTMLElement>('#site-nav');
-  if (!nav) return;
-
-  const apply = () => {
-    const scrolled = window.scrollY > 40;
-    nav.classList.toggle('bg-[var(--color-bg)]/90', scrolled);
-    nav.classList.toggle('backdrop-blur', scrolled);
-    nav.classList.toggle('shadow-lg', scrolled);
-    nav.classList.toggle('shadow-black/30', scrolled);
-  };
-
-  apply();
-  window.addEventListener('scroll', apply, { passive: true });
-}
-
 function initScrollReveal(): void {
   const targets = document.querySelectorAll<HTMLElement>('.reveal');
   if (!('IntersectionObserver' in window)) {
@@ -74,7 +70,7 @@ function initScrollReveal(): void {
         }
       }
     },
-    { threshold: 0.15 }
+    { threshold: 0.12 }
   );
 
   targets.forEach((el) => observer.observe(el));
@@ -107,7 +103,7 @@ function initRoleRotator(): void {
         roleIndex = (roleIndex + 1) % roles.length;
       }
     }
-    setTimeout(tick, deleting ? 30 : 60);
+    setTimeout(tick, deleting ? 30 : 55);
   };
 
   tick();
@@ -127,7 +123,7 @@ function initContactForm(): void {
     submitBtn.disabled = true;
     submitBtn.classList.add('opacity-60');
     status.textContent = 'Sending…';
-    status.className = 'text-sm text-white/60';
+    status.className = 'text-sm text-muted';
 
     try {
       const res = await fetch(contact.formEndpoint, {
@@ -138,11 +134,11 @@ function initContactForm(): void {
 
       if (!res.ok) throw new Error(`Request failed (${res.status})`);
 
-      status.textContent = 'Message sent — thanks for reaching out! I’ll get back to you soon.';
-      status.className = 'text-sm text-[var(--color-accent-2)]';
+      status.textContent = "Message sent. Thanks for reaching out, I'll get back to you soon.";
+      status.className = 'text-sm text-accent-2';
       form.reset();
     } catch {
-      status.textContent = "Something went wrong — feel free to reach out on LinkedIn instead.";
+      status.textContent = 'Something went wrong. You can reach me on LinkedIn instead.';
       status.className = 'text-sm text-red-400';
     } finally {
       submitBtn.disabled = false;
